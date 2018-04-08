@@ -5,35 +5,28 @@
 #include <conio.h>
 #define LONG 20
 
-int longitud(char *car)
-{
+int longitud(char *car){
     int lon = 0;
     lon = strlen(car);
     return lon;
 }
 
-int esVacia(char *car)
-{
+int esVacia(char *car){
     int res = -1;
-    if(*car != '\0')
-    {
+    if(*car != '\0')    {
         res = 1;
     }
     return res;
 }
 
-void concatenar(char *c1,char *c2)
-{
+void concatenar(char *c1,char *c2){
     strcat(c1,c2);
 }
 
-void insertarCar(char cadena[],char *insertar,int pos)
-{
+void insertarCar(char cadena[],char *insertar,int pos){
     int tam = longitud(cadena);
-    if(pos < tam)
-    {
-        for(int i=tam-1;i>=pos;i--)
-        {
+    if(pos < tam){
+        for(int i=tam-1;i>=pos;i--){
             cadena[i+1] = cadena[i];
         }
         cadena[pos] = *insertar;
@@ -41,39 +34,32 @@ void insertarCar(char cadena[],char *insertar,int pos)
         cadena[tam] = '\0';
         printf("Cadena: %s\n",cadena);
     }
-    else
-    {
+    else{
         printf("Error,posicion superada.\n");
     }
 }
 
-void eliminarCar(char cadena1[],char aborrar)
-{
+void eliminarCar(char cadena1[],char aborrar){
     int pos;
     int tam = longitud(cadena1);
     int i=0;
     int encontrado = 0;
-    while(i<tam && encontrado==0)
-    {
-        if(cadena1[i] == aborrar)
-        {
+    while(i<tam && encontrado==0){
+        if(cadena1[i] == aborrar){
             pos = i;
             encontrado = 1;
         }
         i++;
     }
-    if(encontrado == 1)
-    {
-        for(int j=pos;j<tam-1;j++)
-        {
+    if(encontrado == 1){
+        for(int j=pos;j<tam-1;j++){
             cadena1[j] = cadena1[j+1];
         }
         tam--;
         cadena1[tam] = '\0';
         printf("Cadena: %s\n",cadena1);
     }
-    else
-    {
+    else{
         printf("Error,caracter NO existe.\n");
     }
 
@@ -81,7 +67,6 @@ void eliminarCar(char cadena1[],char aborrar)
 
 int main()
 {
-
     printf("a) Calcular la longitud de una cadena.\n");
     char cad[] = {'H','e','l','l','o',',','W','o','r','l','d','!','\0'};
     printf("Cadena: %s\n",cad);
@@ -93,13 +78,9 @@ int main()
     int res = esVacia(cad);
     printf("La cadena %s",cad);
     if(res == -1)
-    {
         printf(" es vacia.\n");
-    }
     else
-    {
         printf(" NO es vacia.\n");
-    }
     printf("\n");
 
     printf("c) Concatenar dos cadenas.\n");
