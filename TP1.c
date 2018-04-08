@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
-#define LONG 20
 
 int longitud(char *car){
     int lon = 0;
@@ -40,10 +39,8 @@ void insertarCar(char cadena[],char *insertar,int pos){
 }
 
 void eliminarCar(char cadena1[],char aborrar){
-    int pos;
+    int pos,i=0,encontrado = 0;
     int tam = longitud(cadena1);
-    int i=0;
-    int encontrado = 0;
     while(i<tam && encontrado==0){
         if(cadena1[i] == aborrar){
             pos = i;
@@ -84,8 +81,8 @@ int main()
     printf("\n");
 
     printf("c) Concatenar dos cadenas.\n");
-    char c1[LONG] = {'H','o','l','a',',','\0'};
-    char c2[LONG] = {'M','u','n','d','o','\0'};
+    char c1[] = {'H','o','l','a',',','\0'};
+    char c2[] = {'M','u','n','d','o','\0'};
     printf("Cadena1: %s\n",c1);
     printf("\n");
     printf("Cadena2: %s\n",c2);
@@ -95,7 +92,7 @@ int main()
     printf("\n");
 
     printf("d) Insertar un caracter en una determinada posici¨®n de una cadena.\n");
-    char cadena[LONG]={'a','b','c','d','e','\0'};
+    char cadena[]={'a','b','c','d','e','\0'};
     printf("Cadena: %s\n",cadena);
     printf("\n");
     char insertar;
@@ -108,7 +105,7 @@ int main()
     printf("\n");
 
     printf("e) Eliminar un caracter dado de una cadena.\n");
-    char cadena1[LONG] = {'A','B','C','D','E','F','G','\0'};
+    char cadena1[] = {'A','B','C','D','E','F','G','\0'};
     char aborrar;
     printf("Cadena: %s\n",cadena1);
     printf("\n");
