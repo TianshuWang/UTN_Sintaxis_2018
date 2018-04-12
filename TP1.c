@@ -1,4 +1,3 @@
-// TP 1 SSL
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,7 +5,9 @@
 
 int longitud(char *car){
     int lon = 0;
-    lon = strlen(car);
+    while(car[lon++] != '\0')
+    {;
+	}
     return lon;
 }
 
@@ -18,14 +19,27 @@ int esVacia(char *car){
     return res;
 }
 
-void concatenar(char *c1,char *c2){
-    strcat(c1,c2);
+void concatenar(char c1[],char c2[]){
+    int i,j;
+    int tam1 = longitud(c1);
+    int tam2 = longitud(c2);
+    char c3[tam1+tam2];
+	for(i=0;c1[i]!= '\0';i++)
+	{
+		c3[i] = c1[i];
+	}
+	for(j=0;c2[j]!='\0';j++)
+	{
+		c3[i+j] = c2[j];
+	}
+	c3[i+j] = '\0';
+	printf("Cadena concatenada: %s\n",c3);
 }
 
 void insertarCar(char cadena[],char *insertar,int pos){
-    int tam = longitud(cadena);
+    int tam = longitud(cadena), i;
     if(pos < tam){
-        for(int i=tam-1;i>=pos;i--){
+        for(i=tam-1;i>=pos;i--){
             cadena[i+1] = cadena[i];
         }
         cadena[pos] = *insertar;
@@ -39,27 +53,21 @@ void insertarCar(char cadena[],char *insertar,int pos){
 }
 
 void eliminarCar(char cadena1[],char aborrar){
-    int pos,i=0,encontrado = 0;
+    int i,j;
     int tam = longitud(cadena1);
-    while(i<tam && encontrado==0){
-        if(cadena1[i] == aborrar){
-            pos = i;
-            encontrado = 1;
+    for(i=0;i<tam;i++)
+    {
+        if(cadena1[i] == aborrar)
+        {
+            for(j=i;j<tam-1;j++)
+            {
+                cadena1[j] = cadena1[j+1];
+            }
+            tam--;
+            --i;
         }
-        i++;
     }
-    if(encontrado == 1){
-        for(int j=pos;j<tam-1;j++){
-            cadena1[j] = cadena1[j+1];
-        }
-        tam--;
-        cadena1[tam] = '\0';
-        printf("Cadena: %s\n",cadena1);
-    }
-    else{
-        printf("Error,caracter NO existe.\n");
-    }
-
+    printf("Cadena: %s\n",cadena1);
 }
 
 int main()
@@ -71,7 +79,7 @@ int main()
     printf("La longitud de la cadena es: %i\n",lon);
     printf("\n");
 
-    printf("b) Determinar si una cadena dada es vac¨ªa.\n");
+    printf("b) Determinar si una cadena dada es vacia.\n");
     int res = esVacia(cad);
     printf("La cadena %s",cad);
     if(res == -1)
@@ -88,10 +96,10 @@ int main()
     printf("Cadena2: %s\n",c2);
     printf("\n");
     concatenar(c1,c2);
-    printf("Cadena concatenada: %s\n",c1);
+
     printf("\n");
 
-    printf("d) Insertar un caracter en una determinada posici¨®n de una cadena.\n");
+    printf("d) Insertar un caracter en una determinada posicion de una cadena.\n");
     char cadena[]={'a','b','c','d','e','\0'};
     printf("Cadena: %s\n",cadena);
     printf("\n");
@@ -105,7 +113,7 @@ int main()
     printf("\n");
 
     printf("e) Eliminar un caracter dado de una cadena.\n");
-    char cadena1[] = {'A','B','C','D','E','F','G','\0'};
+    char cadena1[] = {'B','A','B','D','E','B','G','\0'};
     char aborrar;
     printf("Cadena: %s\n",cadena1);
     printf("\n");
@@ -117,3 +125,4 @@ int main()
     getch();
     return 0;
 }
+
